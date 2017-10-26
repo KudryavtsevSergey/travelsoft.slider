@@ -62,7 +62,7 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 }
 
 if (empty($src) && !empty($noPhoto)) {
-    $src[] = Array("SRC_PICTURES" => $noPhoto, "SOURCE_PICTURES" => $noPhoto, "NAME" => "Изображение - 1");
+    $src[] = Array("SOURCE_PICTURES" => $noPhoto, "SRC_BIG" => $noPhoto, "SRC_SMALL" => $noPhoto, "NAME" => "Изображение - 1");
 }
 
 $arResult["PICTURES"] = $src;
