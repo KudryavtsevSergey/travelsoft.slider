@@ -15,13 +15,17 @@ $arResult["AUTO_SLIDE"] = $arParams["AUTO_SLIDE"] == "Y" ? 1 : 0;
 
 $arResult["ANIMATION_LOOP"] = $arParams["ANIMATION_LOOP"] == "Y" ? 1 : 0;
 
-$NO_PHOTO_DEFAULT = $componentPath . "/images/NO_PHOTO_DEFAULT.jpg";
-
-$noPhoto = !empty($arParams["NO_PHOTO_PATH"]) ? $arParams["NO_PHOTO_PATH"] : $NO_PHOTO_DEFAULT;
+$noPhoto = !empty($arParams["NO_PHOTO_PATH"]) ? $arParams["NO_PHOTO_PATH"] : "";
 
 $imgArrayID = (array)$arParams["DATA_SOURCE"];
 
-$resize = Array("width" => $arParams["WIDTH"], "height" => $arParams["HEIGHT"]);
+$widthBig = !empty($arParams["WIDTH"]) ? $arParams["WIDTH"] : 870;
+$heightBig = !empty($arParams["HEIGHT"]) ? $arParams["HEIGHT"] : 870;
+$widthSmall = $arResult["ITEM_WIDTH"];
+$heightSmall = round($heightBig / $widthBig * $widthSmall);
+
+$resizeBig = Array("width" => $widthBig, "height" => $heightBig);
+$resizeSmall = Array("width" => $widthSmall, "height" => $heightSmall);
 
 if (isset($imgArrayID) && !empty($imgArrayID)) {
 
@@ -35,8 +39,13 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
             $src[$k]["SOURCE_PICTURES"] = $infoPicture["SRC"];
             $src[$k]["NAME"] = "Изображение - " . ($k + 1);
 
-            $resizedPicture = CFile::ResizeImageGet($img, $resize, BX_RESIZE_IMAGE_EXACT, true);
-            $src[$k]["SRC_PICTURES"] = $resizedPicture['src'];
+            $resizedPicture = CFile::ResizeImageGet($img, $resizeBig, BX_RESIZE_IMAGE_EXACT, true);
+            $src[$k]["SRC_BIG"] = $resizedPicture['src'];
+
+            $arResult["ITEM_WIDTH"];
+
+            $resizedPicture = CFile::ResizeImageGet($img, $resizeSmall, BX_RESIZE_IMAGE_EXACT, true);
+            $src[$k]["SRC_SMALL"] = $resizedPicture['src'];
 
         }
 
@@ -44,7 +53,7 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 
 }
 
-if (empty($src)) {
+if (empty($src) && !empty($noPhoto)) {
     $src[] = Array("SRC_PICTURES" => $noPhoto, "SOURCE_PICTURES" => $noPhoto, "NAME" => "Изображение - 1");
 }
 

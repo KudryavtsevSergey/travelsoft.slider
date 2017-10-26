@@ -13,56 +13,32 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+<? if (!empty($arResult["PICTURES"])): ?>
 
-<div id="slider" class="flexslider">
-    <ul class="slides">
-        <? foreach ($arResult["PICTURES"] as $k => $arItem): ?>
-            <li>
-                <a href="<?= $arItem["SOURCE_PICTURES"] ?>" title="<?= $arItem["NAME"] ?>" rel="alternate">
-                    <img src="<?= $arItem["SRC_PICTURES"] ?>" alt="<?= $arItem["NAME"] ?>"/>
-                </a>
-            </li>
-        <? endforeach; ?>
-    </ul>
-</div>
-<div id="carousel" class="flexslider">
-    <ul class="slides">
-        <? foreach ($arResult["PICTURES"] as $arItem): ?>
-            <li>
-                <img src="<?= $arItem["SRC_PICTURES"] ?>" alt="<?= $arItem["NAME"] ?>"/>
-            </li>
-        <? endforeach; ?>
-    </ul>
-</div>
+    <div id="slider" class="flexslider">
+        <ul class="slides">
+            <? foreach ($arResult["PICTURES"] as $k => $arItem): ?>
+                <li>
+                    <a href="<?= $arItem["SOURCE_PICTURES"] ?>" title="<?= $arItem["NAME"] ?>" rel="alternate">
+                        <img src="<?= $arItem["SRC_BIG"] ?>" alt="<?= $arItem["NAME"] ?>"/>
+                    </a>
+                </li>
+            <? endforeach; ?>
+        </ul>
+    </div>
+    
+    <div id="carousel" class="flexslider">
+        <ul class="slides">
+            <? foreach ($arResult["PICTURES"] as $arItem): ?>
+                <li>
+                    <img src="<?= $arItem["SRC_SMALL"] ?>" alt="<?= $arItem["NAME"] ?>"/>
+                </li>
+            <? endforeach; ?>
+        </ul>
+    </div>
 
-<script>
-    $(window).load(function () {
-        $('#carousel').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false,
-            itemWidth: <?=$arResult["ITEM_WIDTH"]?>,
-            itemMargin: <?=$arResult["MARGIN_SMALL_PICTURES"]?>,
-            asNavFor: '#slider'
-        });
+    <script>
+        initializationSlider(<?= $arResult["ITEM_WIDTH"] ?>, <?= $arResult["MARGIN_SMALL_PICTURES"] ?>, <?= $arResult["ANIMATION_LOOP"] ?>, <?= $arResult["AUTO_SLIDE"] ?>);
+    </script>
 
-        $('#slider').flexslider({
-            animation: "slide",
-            animationLoop: <?=$arResult["ANIMATION_LOOP"]?>,
-            slideshow: <?=$arResult["AUTO_SLIDE"]?>,
-            sync: "#carousel",
-            controlNav: "thumbnails"
-        });
-
-        $('.slides').magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-            }
-        });
-    });
-</script>
+<? endif; ?>
