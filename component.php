@@ -1,13 +1,21 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-$APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.flexslider.js');
-$APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.magnific-popup.js');
-$APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/magnific-popup.css");
-$APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/flexslider.css");
-
 /************************************************************************************************************/
 
 /************************************************************************************************************/
+if($arParams["DONT_CONNECT_FLEX"] != "Y") {
+
+    $APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.flexslider.js');
+    $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/flexslider.css");
+
+}
+if($arParams["DONT_CONNECT_NAGNIFIC"] != "Y") {
+
+    $APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.magnific-popup.js');
+    $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/magnific-popup.css");
+    
+}
+
 $arResult["MARGIN_SMALL_PICTURES"] = !empty($arParams["MARGIN_SMALL_PICTURES"]) ? $arParams["MARGIN_SMALL_PICTURES"] : 5;
 $arResult["ITEM_WIDTH"] = !empty($arParams["ITEM_WIDTH"]) ? $arParams["ITEM_WIDTH"] : 150;
 

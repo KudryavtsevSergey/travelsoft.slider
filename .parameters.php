@@ -3,9 +3,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 $arComponentParameters = array(
 	"GROUPS" => array(
-		"PARAMS" => array(
-			"NAME" => GetMessage("MAIN_INCLUDE_PARAMS"),
-		),
+        "PARAMS" => array(
+            "NAME" => GetMessage("MAIN_INCLUDE_PARAMS"),
+        ),
+        "PARAMS_JS" => array(
+            "NAME" => GetMessage("JS_PARAMS"),
+        ),
 	),
 
     "PARAMETERS" => array(
@@ -68,6 +71,18 @@ $arComponentParameters = array(
             "ADDITIONAL_VALUES" => "N",
             "DEFAULT" => "5",
             "PARENT" => "PARAMS",
+        ),
+        "DONT_CONNECT_FLEX" => array(
+            "NAME" => GetMessage("DONT_CONNECT_FLEX"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "N",
+            "PARENT" => "PARAMS_JS",
+        ),
+        "DONT_CONNECT_NAGNIFIC" => array(
+            "NAME" => GetMessage("DONT_CONNECT_NAGNIFIC"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "N",
+            "PARENT" => "PARAMS_JS",
         ),
     ),
 );
