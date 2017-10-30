@@ -59,7 +59,7 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 
             $infoPicture = CFile::GetFileArray($img);
             $src[$k]["SOURCE_PICTURES"] = $infoPicture["SRC"];
-            $src[$k]["NAME"] = "Изображение - " . ($k + 1);
+            $src[$k]["NAME"] = GetMessage("PICTURE")." - " . ($k + 1);
 
             $resizedPicture = CFile::ResizeImageGet($img, $resizeBig, BX_RESIZE_IMAGE_EXACT, true);
             $src[$k]["SRC_BIG"] = $resizedPicture['src'];
@@ -76,7 +76,7 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 }
 
 if (empty($src) && !empty($noPhoto)) {
-    $src[] = Array("SOURCE_PICTURES" => $noPhoto, "SRC_BIG" => $noPhoto, "SRC_SMALL" => $noPhoto, "NAME" => "Изображение - 1");
+    $src[] = Array("SOURCE_PICTURES" => $noPhoto, "SRC_BIG" => $noPhoto, "SRC_SMALL" => $noPhoto, "NAME" =>  GetMessage("PICTURE")." - 1");
 }
 
 $arResult["PICTURES"] = $src;

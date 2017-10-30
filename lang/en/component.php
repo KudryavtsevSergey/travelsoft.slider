@@ -1,2 +1,3 @@
 <?
+$MESS ['PICTURE'] = "Picture";
 ?>
