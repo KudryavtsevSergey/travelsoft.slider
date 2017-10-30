@@ -3,13 +3,17 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /************************************************************************************************************/
 
 /************************************************************************************************************/
-if($arParams["DONT_CONNECT_FLEX"] != "Y") {
+if($arParams["INC_JQUERY"] == "Y"){
+    CJSCore::Init(array('jquery'));
+}
+if($arParams["DO_NOT_INC_OWL_CAROUSEL"] != "Y") {
 
-    $APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.flexslider.js');
-    $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/flexslider.css");
+    $APPLICATION->AddHeadScript($this->GetPath() . '/js/owl.carousel.min.js');
+    $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/owl.carousel.css");
+    $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/owl.theme.default.css");
 
 }
-if($arParams["DONT_CONNECT_NAGNIFIC"] != "Y") {
+if($arParams["DO_NOT_INC_MAGNIFIC_POPUP"] != "Y") {
 
     $APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.magnific-popup.js');
     $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/magnific-popup.css");
@@ -19,9 +23,19 @@ if($arParams["DONT_CONNECT_NAGNIFIC"] != "Y") {
 $arResult["MARGIN_SMALL_PICTURES"] = !empty($arParams["MARGIN_SMALL_PICTURES"]) ? $arParams["MARGIN_SMALL_PICTURES"] : 5;
 $arResult["ITEM_WIDTH"] = !empty($arParams["ITEM_WIDTH"]) ? $arParams["ITEM_WIDTH"] : 150;
 
-$arResult["AUTO_SLIDE"] = $arParams["AUTO_SLIDE"] == "Y" ? 1 : 0;
-
-$arResult["ANIMATION_LOOP"] = $arParams["ANIMATION_LOOP"] == "Y" ? 1 : 0;
+$arResult["ITEM_COUNT_BIG"] = !empty($arParams["ITEM_COUNT_BIG"]) ? $arParams["ITEM_COUNT_BIG"] : 1;
+$arResult["ITEM_COUNT_SMALL"] = !empty($arParams["ITEM_COUNT_SMALL"]) ? $arParams["ITEM_COUNT_SMALL"] : 5;
+$arResult["MARGIN_PICTURES_BIG"] = !empty($arParams["MARGIN_PICTURES_BIG"]) ? $arParams["MARGIN_PICTURES_BIG"] : 10;
+$arResult["MARGIN_PICTURES_SMALL"] = !empty($arParams["MARGIN_PICTURES_SMALL"]) ? $arParams["MARGIN_PICTURES_SMALL"] : 10;
+$arResult["AUTO_PLAY_BIG"] = $arParams["AUTO_PLAY_BIG"] == "Y" ? 1 : 0;
+$arResult["AUTO_PLAY_TIMEOUT_BIG"] = !empty($arParams["AUTO_PLAY_TIMEOUT_BIG"]) ? $arParams["AUTO_PLAY_TIMEOUT_BIG"] : 3000;
+$arResult["AUTO_PLAY_HOVER_PAUSE_BIG"] = $arParams["AUTO_PLAY_HOVER_PAUSE_BIG"] == "Y" ? 1 : 0;
+$arResult["NAV_BIG"] = $arParams["NAV_BIG"] == "Y" ? 1 : 0;
+$arResult["NAV_SMALL"] = $arParams["NAV_SMALL"] == "Y" ? 1 : 0;
+$arResult["DOT_BIG"] = $arParams["DOT_BIG"] == "Y" ? 1 : 0;
+$arResult["DOT_SMALL"] = $arParams["DOT_SMALL"] == "Y" ? 1 : 0;
+$arResult["LAZY_LOAD_BIG"] = $arParams["LAZY_LOAD_BIG"] == "Y" ? 1 : 0;
+$arResult["LAZY_LOAD_SMALL"] = $arParams["LAZY_LOAD_SMALL"] == "Y" ? 1 : 0;
 
 $noPhoto = !empty($arParams["NO_PHOTO_PATH"]) ? $arParams["NO_PHOTO_PATH"] : "";
 

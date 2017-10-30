@@ -1,15 +1,18 @@
 <?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 $arComponentParameters = array(
-	"GROUPS" => array(
+    "GROUPS" => array(
         "PARAMS" => array(
             "NAME" => GetMessage("MAIN_INCLUDE_PARAMS"),
+        ),
+        "PARAMS_SLIDER" => array(
+            "NAME" => GetMessage("SLIDER_PARAMS"),
         ),
         "PARAMS_JS" => array(
             "NAME" => GetMessage("JS_PARAMS"),
         ),
-	),
+    ),
 
     "PARAMETERS" => array(
         "DATA_SOURCE" => array(
@@ -44,42 +47,110 @@ $arComponentParameters = array(
             "DEFAULT" => '={NO_PHOTO_DEFAULT}',
             "PARENT" => "PARAMS",
         ),
-        "AUTO_SLIDE" => array(
-            "NAME" => GetMessage("AUTO_SLIDE"),
-            "TYPE" => "CHECKBOX",
-            "DEFAULT" => "N",
-            "PARENT" => "PARAMS",
-        ),
-        "ANIMATION_LOOP" => array(
-            "NAME" => GetMessage("ANIMATION_LOOP"),
-            "TYPE" => "CHECKBOX",
-            "DEFAULT" => "N",
-            "PARENT" => "PARAMS",
-        ),
-        "ITEM_WIDTH" => array(
-            "NAME" => GetMessage("ITEM_WIDTH"),
+
+        "ITEM_COUNT_BIG" => array(
+            "NAME" => GetMessage("ITEM_COUNT_BIG"),
             "TYPE" => "STRING",
             "MULTIPLE" => "N",
             "ADDITIONAL_VALUES" => "N",
-            "DEFAULT" => "150",
-            "PARENT" => "PARAMS",
+            "DEFAULT" => "1",
+            "PARENT" => "PARAMS_SLIDER",
         ),
-        "MARGIN_SMALL_PICTURES" => array(
-            "NAME" => GetMessage("MARGIN_SMALL_PICTURES"),
+        "ITEM_COUNT_SMALL" => array(
+            "NAME" => GetMessage("ITEM_COUNT_SMALL"),
             "TYPE" => "STRING",
             "MULTIPLE" => "N",
             "ADDITIONAL_VALUES" => "N",
             "DEFAULT" => "5",
-            "PARENT" => "PARAMS",
+            "PARENT" => "PARAMS_SLIDER",
         ),
-        "DONT_CONNECT_FLEX" => array(
-            "NAME" => GetMessage("DONT_CONNECT_FLEX"),
+        "MARGIN_PICTURES_BIG" => array(
+            "NAME" => GetMessage("MARGIN_PICTURES_BIG"),
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "ADDITIONAL_VALUES" => "N",
+            "DEFAULT" => "10",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "MARGIN_PICTURES_SMALL" => array(
+            "NAME" => GetMessage("MARGIN_PICTURES_SMALL"),
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "ADDITIONAL_VALUES" => "N",
+            "DEFAULT" => "10",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "AUTO_PLAY_BIG" => array(
+            "NAME" => GetMessage("AUTO_PLAY_BIG"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "AUTO_PLAY_TIMEOUT_BIG" => array(
+            "NAME" => GetMessage("AUTO_PLAY_TIMEOUT_BIG"),
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "ADDITIONAL_VALUES" => "N",
+            "DEFAULT" => "3000",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "AUTO_PLAY_HOVER_PAUSE_BIG" => array(
+            "NAME" => GetMessage("AUTO_PLAY_HOVER_PAUSE_BIG"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "NAV_BIG" => array(
+            "NAME" => GetMessage("NAV_BIG"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "NAV_SMALL" => array(
+            "NAME" => GetMessage("NAV_SMALL"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "DOT_BIG" => array(
+            "NAME" => GetMessage("DOT_BIG"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "DOT_SMALL" => array(
+            "NAME" => GetMessage("DOT_SMALL"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "N",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "LAZY_LOAD_BIG" => array(
+            "NAME" => GetMessage("LAZY_LOAD_BIG"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+        "LAZY_LOAD_SMALL" => array(
+            "NAME" => GetMessage("LAZY_LOAD_SMALL"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
+            "PARENT" => "PARAMS_SLIDER",
+        ),
+
+        "DO_NOT_INC_OWL_CAROUSEL" => array(
+            "NAME" => GetMessage("DO_NOT_INC_OWL_CAROUSEL"),
             "TYPE" => "CHECKBOX",
             "DEFAULT" => "N",
             "PARENT" => "PARAMS_JS",
         ),
-        "DONT_CONNECT_NAGNIFIC" => array(
-            "NAME" => GetMessage("DONT_CONNECT_NAGNIFIC"),
+        "DO_NOT_INC_MAGNIFIC_POPUP" => array(
+            "NAME" => GetMessage("DO_NOT_INC_MAGNIFIC_POPUP"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "N",
+            "PARENT" => "PARAMS_JS",
+        ),
+        "INC_JQUERY" => array(
+            "NAME" => GetMessage("INC_JQUERY"),
             "TYPE" => "CHECKBOX",
             "DEFAULT" => "N",
             "PARENT" => "PARAMS_JS",
