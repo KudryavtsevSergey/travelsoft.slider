@@ -83,7 +83,7 @@ $arComponentParameters = array(
         "AUTO_PLAY_BIG" => array(
             "NAME" => GetMessage("AUTO_PLAY_BIG"),
             "TYPE" => "CHECKBOX",
-            "DEFAULT" => "Y",
+            "DEFAULT" => "N",
             "PARENT" => "PARAMS_SLIDER",
         ),
         "AUTO_PLAY_TIMEOUT_BIG" => array(
@@ -115,7 +115,7 @@ $arComponentParameters = array(
         "DOT_BIG" => array(
             "NAME" => GetMessage("DOT_BIG"),
             "TYPE" => "CHECKBOX",
-            "DEFAULT" => "Y",
+            "DEFAULT" => "N",
             "PARENT" => "PARAMS_SLIDER",
         ),
         "DOT_SMALL" => array(
