@@ -15,20 +15,21 @@ $this->setFrameMode(true);
 ?>
 <? if (!empty($arResult["PICTURES"])): ?>
 
-    <div class="owl-carousel owl-theme" id="big">
+    <div class="owl-carousel owl-theme" id="bigSlider">
         <? foreach ($arResult["PICTURES"] as $k => $arItem): ?>
             <a href="<?= $arItem["SOURCE_PICTURES"] ?>" title="<?= $arItem["NAME"] ?>" rel="alternate">
                 <img class="owl-lazy" data-src="<?= $arItem["SRC_BIG"]; ?>" alt="<?= $arItem["NAME"] ?>">
             </a>
         <? endforeach; ?>
     </div>
-
-    <div class="owl-carousel owl-theme" id="small">
-        <? foreach ($arResult["PICTURES"] as $k => $arItem): ?>
-            <img class="owl-lazy" data-number="<?= $k ?>" data-src="<?= $arItem["SRC_SMALL"]; ?>"
-                 alt="<?= $arItem["NAME"] ?>">
-        <? endforeach; ?>
-    </div>
+    <?if(count($arResult["PICTURES"]) != 1):?>
+        <div class="owl-carousel owl-theme" id="smallSlider">
+            <? foreach ($arResult["PICTURES"] as $k => $arItem): ?>
+                <img class="owl-lazy" data-number="<?= $k ?>" data-src="<?= $arItem["SRC_SMALL"]; ?>"
+                     alt="<?= $arItem["NAME"] ?>">
+            <? endforeach; ?>
+        </div>
+    <?endif;?>
 
     <script>
         (function ($) {
@@ -65,8 +66,8 @@ $this->setFrameMode(true);
                     lazyLoadBig,
                     lazyLoadSmall
                 ) {
-                    var slideBig = $("#big");
-                    var slideSmall = $("#small");
+                    var slideBig = $("#bigSlider");
+                    var slideSmall = $("#smallSlider");
 
                     var slidesPerPage = itemsCountSmall; //globaly define number of elements per page
                     var syncedSecondary = true;
