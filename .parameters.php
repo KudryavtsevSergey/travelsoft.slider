@@ -23,12 +23,20 @@ $arComponentParameters = array(
             "DEFAULT" => '={$arResult["DISPLAY_PROPERTIES"]["PICTURES"]["VALUE"]}',
             "PARENT" => "PARAMS",
         ),
+        "DATA_DESCRIPTION" =>array(
+            "NAME" => GetMessage("DATA_DESCRIPTION"),
+            "TYPE" => "STRING",
+            "MULTIPLE" => "N",
+            "ADDITIONAL_VALUES" => "N",
+            "DEFAULT" => '={$arResult["DISPLAY_PROPERTIES"]["PICTURES"]["DESCRIPTION"]}',
+            "PARENT" => "PARAMS",
+        ),
         "WIDTH" => array(
             "NAME" => GetMessage("WIDTH"),
             "TYPE" => "STRING",
             "MULTIPLE" => "N",
             "ADDITIONAL_VALUES" => "N",
-            "DEFAULT" => "300",
+            "DEFAULT" => "870",
             "PARENT" => "PARAMS",
         ),
         "HEIGHT" => array(
@@ -36,7 +44,7 @@ $arComponentParameters = array(
             "TYPE" => "STRING",
             "MULTIPLE" => "N",
             "ADDITIONAL_VALUES" => "N",
-            "DEFAULT" => "300",
+            "DEFAULT" => "570",
             "PARENT" => "PARAMS",
         ),
         "NO_PHOTO_PATH" => array(

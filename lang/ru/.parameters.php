@@ -3,6 +3,7 @@ $MESS ['MAIN_INCLUDE_PARAMS'] = "Основные параметры";
 $MESS ['JS_PARAMS'] = "Параметры js";
 $MESS ['SLIDER_PARAMS'] = "Параметры слайдера";
 $MESS ['DATA_SOURCE'] = "Источник данных";
+$MESS ['DATA_DESCRIPTION'] = "Описание картинок";
 $MESS ['WIDTH'] = "Ширина картиники";
 $MESS ['HEIGHT'] = "Высота картиники";
 $MESS ['NO_PHOTO_PATH'] = "Путь к фото заглушке";

@@ -3,21 +3,21 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /************************************************************************************************************/
 
 /************************************************************************************************************/
-if($arParams["INC_JQUERY"] == "Y"){
+if ($arParams["INC_JQUERY"] == "Y") {
     CJSCore::Init(array('jquery'));
 }
-if($arParams["DO_NOT_INC_OWL_CAROUSEL"] != "Y") {
+if ($arParams["DO_NOT_INC_OWL_CAROUSEL"] != "Y") {
 
     $APPLICATION->AddHeadScript($this->GetPath() . '/js/owl.carousel.min.js');
     $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/owl.carousel.css");
     $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/owl.theme.default.css");
 
 }
-if($arParams["DO_NOT_INC_MAGNIFIC_POPUP"] != "Y") {
+if ($arParams["DO_NOT_INC_MAGNIFIC_POPUP"] != "Y") {
 
     $APPLICATION->AddHeadScript($this->GetPath() . '/js/jquery.magnific-popup.js');
     $APPLICATION->SetAdditionalCSS($this->GetPath() . "/css/magnific-popup.css");
-    
+
 }
 
 $arResult["MARGIN_SMALL_PICTURES"] = !empty($arParams["MARGIN_SMALL_PICTURES"]) ? $arParams["MARGIN_SMALL_PICTURES"] : 5;
@@ -40,9 +40,28 @@ $arResult["LAZY_LOAD_SMALL"] = $arParams["LAZY_LOAD_SMALL"] == "Y" ? 1 : 0;
 $noPhoto = !empty($arParams["NO_PHOTO_PATH"]) ? $arParams["NO_PHOTO_PATH"] : "";
 
 $imgArrayID = (array)$arParams["DATA_SOURCE"];
+foreach ($imgArrayID as $k => $value) {
+    if (!is_int($value)) {
+        $fileName = basename($value);
+        $dBaseObj = $DB->Query("SELECT ID FROM b_file WHERE ORIGINAL_NAME='$fileName'");
+        $file = $dBaseObj->Fetch();
+        if (!empty($file["ID"])) {
+            $imgArrayID[$k] = $file["ID"];
+        } else {
+            $fileArray = CFile::MakeFileArray(
+                $value
+            );
+            $imgArrayID[$k] = CFile::SaveFile(
+                $fileArray,
+                "gallery"
+            );
+        }
+    }
+}
+$imgArrayDescription = (array)$arParams["DATA_DESCRIPTION"];
 
 $widthBig = !empty($arParams["WIDTH"]) ? $arParams["WIDTH"] : 870;
-$heightBig = !empty($arParams["HEIGHT"]) ? $arParams["HEIGHT"] : 870;
+$heightBig = !empty($arParams["HEIGHT"]) ? $arParams["HEIGHT"] : 570;
 $widthSmall = $arResult["ITEM_WIDTH"];
 $heightSmall = round($heightBig / $widthBig * $widthSmall);
 
@@ -59,7 +78,12 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 
             $infoPicture = CFile::GetFileArray($img);
             $src[$k]["SOURCE_PICTURES"] = $infoPicture["SRC"];
-            $src[$k]["NAME"] = GetMessage("PICTURE")." - " . ($k + 1);
+
+            if (!empty($imgArrayDescription[$k])) {
+                $src[$k]["NAME"] = $imgArrayDescription[$k];
+            } else {
+                $src[$k]["NAME"] = GetMessage("PICTURE") . " - " . ($k + 1);
+            }
 
             $resizedPicture = CFile::ResizeImageGet($img, $resizeBig, BX_RESIZE_IMAGE_EXACT, true);
             $src[$k]["SRC_BIG"] = $resizedPicture['src'];
@@ -76,7 +100,7 @@ if (isset($imgArrayID) && !empty($imgArrayID)) {
 }
 
 if (empty($src) && !empty($noPhoto)) {
-    $src[] = Array("SOURCE_PICTURES" => $noPhoto, "SRC_BIG" => $noPhoto, "SRC_SMALL" => $noPhoto, "NAME" =>  GetMessage("PICTURE")." - 1");
+    $src[] = Array("SOURCE_PICTURES" => $noPhoto, "SRC_BIG" => $noPhoto, "SRC_SMALL" => $noPhoto, "NAME" => GetMessage("PICTURE") . " - 1");
 }
 
 $arResult["PICTURES"] = $src;

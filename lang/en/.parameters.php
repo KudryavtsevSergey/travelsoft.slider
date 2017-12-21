@@ -3,6 +3,7 @@ $MESS ['MAIN_INCLUDE_PARAMS'] = "Main include params";
 $MESS ['JS_PARAMS'] = "Params js";
 $MESS ['SLIDER_PARAMS'] = "Slider params";
 $MESS ['DATA_SOURCE'] = "Data source";
+$MESS ['DATA_DESCRIPTION'] = "Description pictures";
 $MESS ['WIDTH'] = "Width picture";
 $MESS ['HEIGHT'] = "Height picture";
 $MESS ['NO_PHOTO_PATH'] = "No photo path";
