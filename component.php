@@ -41,7 +41,7 @@ $noPhoto = !empty($arParams["NO_PHOTO_PATH"]) ? $arParams["NO_PHOTO_PATH"] : "";
 
 $imgArrayID = (array)$arParams["DATA_SOURCE"];
 foreach ($imgArrayID as $k => $value) {
-    if (!is_int($value)) {
+    if (!is_numeric($value)) {
         $fileName = basename($value);
         $dBaseObj = $DB->Query("SELECT ID FROM b_file WHERE ORIGINAL_NAME='$fileName'");
         $file = $dBaseObj->Fetch();
